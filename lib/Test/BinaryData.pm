@@ -8,14 +8,14 @@ Test::BinaryData - compare two things, give hex dumps if they differ
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
- $Id: /my/cs/projects/Test-MinimumVersion/trunk/lib/Test/MinimumVersion.pm 31951 2007-07-03T21:47:09.752107Z rjbs  $
+ $Id: /my/cs/projects/Test-BinaryData/trunk/lib/Test/BinaryData.pm 32150 2007-07-21T02:05:15.258289Z rjbs  $
 
 =cut
 
 use vars qw($VERSION);
-$VERSION = '0.001';
+$VERSION = '0.002';
 
 =head1 SYNOPSIS
 
