@@ -14,4 +14,6 @@ no_index:
   directory: 
     - inc
     - t
-version: 0.002
+requires: 
+  bytes: 0
+version: 0.003
