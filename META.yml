@@ -1,0 +1,17 @@
+--- 
+abstract: compare two things, give hex dumps if they differ
+author: Ricardo SIGNES <rjbs@cpan.org>
+build_requires: 
+  Test::Tester: 0
+distribution_type: module
+generated_by: Module::Install version 0.67
+license: perl
+meta-spec: 
+  url: http://module-build.sourceforge.net/META-spec-v1.3.html
+  version: 1.3
+name: Test-BinaryData
+no_index: 
+  directory: 
+    - inc
+    - t
+version: 0.001
