@@ -10,14 +10,14 @@ Test::BinaryData - compare two things, give hex dumps if they differ
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
- $Id: /my/cs/projects/Test-BinaryData/trunk/lib/Test/BinaryData.pm 32155 2007-07-21T02:21:28.079695Z rjbs  $
+ $Id: /my/cs/projects/Test-BinaryData/trunk/lib/Test/BinaryData.pm 32188 2007-07-27T22:08:19.378295Z rjbs  $
 
 =cut
 
 use vars qw($VERSION);
-$VERSION = '0.003';
+$VERSION = '0.004';
 
 =head1 SYNOPSIS
 
@@ -82,6 +82,7 @@ differences.  Here, we'll just look for two:
 
 =cut
 
+use Carp ();
 use Test::Builder;
 require Exporter;
 @Test::BinaryData::ISA = qw(Exporter);
@@ -143,7 +144,7 @@ sub is_binary {
   $arg ||= {};
 
   unless (defined $arg->{columns}) {
-    if ($ENV{COLUMNS} =~ /\A\d+\z/ and $ENV{COLUMNS} > 0) {
+    if (($ENV{COLUMNS}||'') =~ /\A\d+\z/ and $ENV{COLUMNS} > 0) {
       $arg->{columns} = $ENV{COLUMNS} - 1;
     } else {
       $arg->{columns} = 79;

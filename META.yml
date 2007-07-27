@@ -16,4 +16,4 @@ no_index:
     - t
 requires: 
   bytes: 0
-version: 0.003
+version: 0.004
