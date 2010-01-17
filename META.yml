@@ -20,8 +20,8 @@ no_index:
     - t
     - xt
 requires:
-  bytes: 0
+  Encode: 0
   perl: 5.6.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.009
+version: 0.010
