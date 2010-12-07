@@ -3,7 +3,7 @@ use strict;
 use warnings;
 
 use Test::Tester 0.107;
-use Test::More tests => 63;
+use Test::More tests => 69;
 use Test::BinaryData;
 
 use Encode ();
@@ -179,6 +179,21 @@ check_test(
     diag => $wide_diag,
   },
   "wide character string compare"
+);
+
+check_test(
+  sub {
+    is_binary(
+      "Queensrÿche",
+      [ qw( 5175 6565 6e73 72c3 bf63 6865 ) ],
+      'encoded y-umlaut'
+    )
+  },
+  {
+    ok   => 1,
+    name => 'encoded y-umlaut',
+  },
+  "compare encoded octets; want is arrayref"
 );
 
 __DATA__

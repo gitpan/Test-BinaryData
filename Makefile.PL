@@ -1,16 +1,57 @@
+
 use strict;
 use warnings;
 
-use inc::Module::Install;
+BEGIN { require 5.006; }
 
-name      ('Test-BinaryData');
-all_from  ('lib/Test/BinaryData.pm');
-author    ('Ricardo SIGNES <rjbs@cpan.org>');
+use ExtUtils::MakeMaker 6.31;
 
-requires(Encode => 0.000); # minimum unknown
-test_requires('Test::Tester'     => 0.107); # recent ::Builder compat
 
-auto_manifest;
-extra_tests;
 
-WriteAll();
+my %WriteMakefileArgs = (
+  'ABSTRACT' => 'compare two things, give hex dumps if they differ',
+  'AUTHOR' => 'Ricardo Signes <rjbs@cpan.org>',
+  'BUILD_REQUIRES' => {
+    'Encode' => '0',
+    'Test::More' => '0.96',
+    'Test::Tester' => '0.107'
+  },
+  'CONFIGURE_REQUIRES' => {
+    'ExtUtils::MakeMaker' => '6.31'
+  },
+  'DISTNAME' => 'Test-BinaryData',
+  'EXE_FILES' => [],
+  'LICENSE' => 'perl',
+  'NAME' => 'Test::BinaryData',
+  'PREREQ_PM' => {
+    'Carp' => '0',
+    'Exporter' => '0',
+    'Test::Builder' => '0'
+  },
+  'VERSION' => '0.012',
+  'test' => {
+    'TESTS' => 't/*.t'
+  }
+);
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+
