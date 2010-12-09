@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package Test::BinaryData;
 BEGIN {
-  $Test::BinaryData::VERSION = '0.012';
+  $Test::BinaryData::VERSION = '0.013';
 }
 # ABSTRACT: compare two things, give hex dumps if they differ
 
@@ -60,7 +60,9 @@ sub is_binary {
 
   my ($hw, $aw) = _widths($arg->{columns});
 
-  $want = join q{}, map { chr hex } map { unpack "(a2)*" } @$want if ref $want;
+  if (ref $want) {
+    $want = join q{}, map { chr hex } map { unpack "(a2)*", $_ } @$want;
+  }
 
   my $have_is_wide = grep { ord > 255 } split //, $have;
   my $want_is_wide = grep { ord > 255 } split //, $want;
@@ -143,7 +145,7 @@ Test::BinaryData - compare two things, give hex dumps if they differ
 
 =head1 VERSION
 
-version 0.012
+version 0.013
 
 =head1 SYNOPSIS
 

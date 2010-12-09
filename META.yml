@@ -22,7 +22,7 @@ requires:
   perl: 5.006
 resources:
   repository: git://git.codesimply.com/Test-BinaryData.git
-version: 0.012
+version: 0.013
 x_Dist_Zilla:
   plugins:
     -
